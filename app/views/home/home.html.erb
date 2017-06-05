@@ -1,4 +1,9 @@
 <%= form_tag(forecasts_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :city, params[:city], placeholder: "Search Posts" %>
-<%= submit_tag "Search" %>
+<!-- <table class="table"> -->
+ <div class="col-xs-6">
+ <%= text_field_tag :city, params[:city], placeholder: "Search by city", class: 'form-control'%>
+</div>
+ <div class="col-xs-6">
+<%= submit_tag "Search", class: 'btn btn-primary' %>
+ </div>
 <% end %>
