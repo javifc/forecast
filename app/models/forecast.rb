@@ -1,6 +1,6 @@
-class Forecast	
+class Forecast
 
-  	attr_accessor :data_time
+  	attr_accessor :dt
   	attr_accessor :pressure
   	attr_accessor :humidity	
   	attr_accessor :wind_speed
@@ -11,6 +11,7 @@ class Forecast
   	attr_accessor :weather
 
   	def initialize(hsh = {})
+      self.dt = hsh[:dt] unless hsh[:dt].blank?   
       self.pressure = hsh[:pressure] unless hsh[:pressure].blank?
       self.humidity = hsh[:humidity] unless hsh[:humidity].blank?
       self.wind_speed = hsh[:speed] unless hsh[:speed].blank?

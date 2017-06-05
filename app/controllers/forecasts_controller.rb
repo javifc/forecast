@@ -1,14 +1,23 @@
 class ForecastsController < ApplicationController
 
   def index
-  	
-  	if session[params[:city].to_sym]
-  		@forecasts = session[params[:city].to_sym] 
+
+  	res = ForecastService.find_by_city(params[:search])
+
+  	if res[:success]
+  		@forecasts = res[:forecasts]
+  		@city = res[:city]
+  		# session[:current_forecasts] = @forecasts
   	else
-  		@forecasts = ForecastService.find_by_city(params[:city])
+  		# return error msg
+  		# session.delete(:current_forecasts)
   	end
+  	
   end
 
   def show
+  	forecasts = session[:current_forecasts]
+  	# TODO: change this for a real search
+  	forecasts.first
   end
 end
