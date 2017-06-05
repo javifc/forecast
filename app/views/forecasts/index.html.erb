@@ -1,5 +1,5 @@
  <div class="col-12">
-     hello!
+ 	<button type="button"  class="glyphicon glyphicon-arrow-left" onclick="window.history.go(-1); return false;"  value="search again" />
 </div>
 <div class="col-12">
 
@@ -8,25 +8,23 @@
 		<div class="row">
 		 <% @forecasts.each_with_index do |forecast, index| %> 	
 
-				    <div class="col-sm-3" >
+				    <div class="col-sm-6 col-md-4 col-lg-3" data-toggle="modal" data-target="#Modal_<%=forecast.dt%>">
 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal_<%=forecast.dt%>">Open Modal</button>
-					 <div >
-					      <h3>
-					      <%= 
-					      if Time.now.strftime("%d/%m/%Y")  == Time.at(forecast.dt).strftime("%d/%m/%Y")  
-					      		"Today" 
-					      	   else
-					      	  	Time.at(forecast.dt).strftime("%A, %d/%m")
-					      	   end
-					      %>	   
-					      </h3>
+						      <h3>
+						      <%= 
+						      if Time.now.strftime("%d/%m/%Y")  == Time.at(forecast.dt).strftime("%d/%m/%Y")  
+						      		"Today" 
+						      	   else
+						      	  	Time.at(forecast.dt).strftime("%A, %d/%m")
+						      	   end
+						      %>	   
+						      </h3>
 
-					     <img src="<%= "http://openweathermap.org/img/w/#{forecast.weather.icon}.png" %>" alt="<%= forecast.weather.main %>" >
-						 <p> <%= forecast.temp.day %>&deg; </p>
-					     <p> <%= forecast.weather.description %> </p>
-					     <p> Wind speed <%= forecast.wind_speed %> meter/sec </p>	
-				     </div>			     
+						     <img src="<%= "http://openweathermap.org/img/w/#{forecast.weather.icon}.png" %>" alt="<%= forecast.weather.main %>" >
+							 <p> <%= forecast.temp.day %>&deg; </p>
+						     <p> <%= forecast.weather.description %> </p>
+						     <p> Wind speed <%= forecast.wind_speed %> meter/sec </p>	
+		     
 				    </div>
 
 				    <div id="Modal_<%=forecast.dt%>" class="modal fade" role="dialog">
@@ -36,10 +34,59 @@
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        <h4 class="modal-title">Modal Header</h4>
+						        <h3 class="modal-title">
+						        	<%=Time.at(forecast.dt).strftime("%A, %d/%m")%>
+						        </h3>
+						        <h4 class="modal-title">
+						        	<%= @city.name %> - <%= @city.country %>
+ 								</h4> 
 						      </div>
 						      <div class="modal-body">
-						        <p>Some text in the modal.</p>
+						      	<div class="row">
+						      		<div class="col-sm-1"></div>
+						      		<div class="col-sm-10 text-left">
+						      		 	<h2><img src="<%= "http://openweathermap.org/img/w/#{forecast.weather.icon}.png" %>" alt="<%= forecast.weather.main %>" >
+						      		 		<%= forecast.weather.main %>
+						      		 		<%= forecast.temp.day %>&deg;
+						      		 		<small> <%= forecast.weather.description %> </small>
+						      		 	</h2>
+						      		 	
+						      		</div>
+						      		<div class="col-sm-1"></div>
+						      	</div>
+					      		<div class="row">
+						      		<div class="col-sm-2"></div>
+						      		<div class="col-sm-10">
+						      		 
+								     <p class="text-left"> Wind speed <%= forecast.wind_speed %> meter/sec </p>	
+						      		</div>
+						      	</div>
+					      		<div class="row">
+									<div class="col-sm-12">
+									 	<h2>Temperatures</h2>
+										<table class="table table-bordered">
+										    <thead>
+										      <tr>
+										        <th>Min</th>
+										        <th>Max</th>
+										        <th>Morning</th>
+										        <th>Evening</th>
+										        <th>Night</th>										        
+										      </tr>
+										    </thead>
+										    <tbody>
+										      <tr>
+										        <td> <%= forecast.temp.min%> </td>
+ 												<td> <%= forecast.temp.max%> </td>	
+ 												<td> <%= forecast.temp.morn%> </td>	
+ 												<td> <%= forecast.temp.eve%> </td>	
+ 												<td> <%= forecast.temp.night%> </td>	 
+										      </tr>
+										    </tbody>
+										  </table>
+									</div>
+						      	</div>
+
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
