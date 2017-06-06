@@ -2,22 +2,17 @@ class ForecastsController < ApplicationController
 
   def index
 
-  	res = ForecastService.find_by_city(params[:search])
+	  	res = ForecastService.find_by_city(params[:search])
 
-  	if res[:success]
-  		@forecasts = res[:forecasts]
-  		@city = res[:city]
-  		# session[:current_forecasts] = @forecasts
-  	else
-  		# return error msg
-  		# session.delete(:current_forecasts)
-  	end
-  	
+	  	if res[:success]
+	  		@forecasts = res[:forecasts]
+	  		@city = res[:city]
+	  	else
+	  		flash.now[:error] = "upss.. an error occurred : #{res[:error]}"
+	  		render "navigations/home"
+	  	end
+ 	
   end
 
-  def show
-  	forecasts = session[:current_forecasts]
-  	# TODO: change this for a real search
-  	forecasts.first
-  end
+
 end
