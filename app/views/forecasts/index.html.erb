@@ -1,5 +1,10 @@
  <div class="col-12">
- 	<button type="button"  class="glyphicon glyphicon-arrow-left" onclick="window.history.go(-1); return false;"  value="search again" />
+<div class="btn-group">
+  <%= button_to root_path ,  {controller: "home", action: "home", :method => :get, class: 'btn btn-primary'}   do %> 
+  	 <div class="glyphicon glyphicon-arrow-left"> Back </div>
+  <% end %>
+</div>
+
 </div>
 <div class="col-12">
 
@@ -8,7 +13,8 @@
 		<div class="row">
 		 <% @forecasts.each_with_index do |forecast, index| %> 	
 
-				    <div class="col-sm-6 col-md-4 col-lg-3" data-toggle="modal" data-target="#Modal_<%=forecast.dt%>">
+		 			<!-- DISPLAYED INFO -->
+				    <div class="col-sm-6 col-md-4 col-lg-3" data-toggle="modal" data-target="#Modal_<%=forecast.dt%>" style="cursor: pointer;">
 
 						      <h3>
 						      <%= 
@@ -21,12 +27,13 @@
 						      </h3>
 
 						     <img src="<%= "http://openweathermap.org/img/w/#{forecast.weather.icon}.png" %>" alt="<%= forecast.weather.main %>" >
-							 <p> <%= forecast.temp.day %>&deg; </p>
+							 <p> <%= forecast.temp.day %> <%= temperature_unit(forecast.units) %> </p>
 						     <p> <%= forecast.weather.description %> </p>
-						     <p> Wind speed <%= forecast.wind_speed %> meter/sec </p>	
+						     <p> Wind speed <%= forecast.speed %> <%= speed_unit(forecast.units) %> </p>	
 		     
 				    </div>
 
+				    <!-- MODAL WITH ALL THE INFO-->
 				    <div id="Modal_<%=forecast.dt%>" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
@@ -47,7 +54,7 @@
 						      		<div class="col-sm-10 text-left">
 						      		 	<h2><img src="<%= "http://openweathermap.org/img/w/#{forecast.weather.icon}.png" %>" alt="<%= forecast.weather.main %>" >
 						      		 		<%= forecast.weather.main %>
-						      		 		<%= forecast.temp.day %>&deg;
+						      		 		<%= forecast.temp.day %> <%= temperature_unit(forecast.units) %>
 						      		 		<small> <%= forecast.weather.description %> </small>
 						      		 	</h2>
 						      		 	
@@ -58,13 +65,18 @@
 						      		<div class="col-sm-2"></div>
 						      		<div class="col-sm-10">
 						      		 
-								     <p class="text-left"> Wind speed <%= forecast.wind_speed %> meter/sec </p>	
+						      		 <p class="text-left"> <strong> Pressure: </strong><%= forecast.pressure %> hPa </p>	 
+								     <p class="text-left"> <strong> Humidity: </strong><%= forecast.humidity %> % </p>	 
+								     <p class="text-left"> <strong> Wind speed: </strong><%= forecast.speed %> <%= speed_unit(forecast.units) %> </p>	
+								     <p class="text-left"> <strong> Wind direction: </strong><%= forecast.deg %> degrees </p>	
+								     <p class="text-left"> <strong> Cloudiness: </strong><%= forecast.clouds %> % </p>	 
+
 						      		</div>
 						      	</div>
 					      		<div class="row">
 									<div class="col-sm-12">
-									 	<h2>Temperatures</h2>
-										<table class="table table-bordered">
+									 	<h3>Temperatures</h3>
+										<table class="table table-condensed">
 										    <thead>
 										      <tr>
 										        <th>Min</th>
@@ -75,12 +87,12 @@
 										      </tr>
 										    </thead>
 										    <tbody>
-										      <tr>
-										        <td> <%= forecast.temp.min%> </td>
- 												<td> <%= forecast.temp.max%> </td>	
- 												<td> <%= forecast.temp.morn%> </td>	
- 												<td> <%= forecast.temp.eve%> </td>	
- 												<td> <%= forecast.temp.night%> </td>	 
+										      <tr class="info text-left">
+										        <td> <%= forecast.temp.min%> <%= temperature_unit(forecast.units) %> </td>
+ 												<td> <%= forecast.temp.max%> <%= temperature_unit(forecast.units) %></td>	
+ 												<td> <%= forecast.temp.morn%> <%= temperature_unit(forecast.units) %></td>	
+ 												<td> <%= forecast.temp.eve%> <%= temperature_unit(forecast.units) %></td>	
+ 												<td> <%= forecast.temp.night%> <%= temperature_unit(forecast.units) %> </td>	 
 										      </tr>
 										    </tbody>
 										  </table>
