@@ -1,5 +1,6 @@
-class ForecastService
+require 'net/http'
 
+class ForecastService
 	
 	@base_url_find_by_city = "http://api.openweathermap.org/data/2.5/forecast/daily?"
 

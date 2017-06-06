@@ -1,3 +1,13 @@
 language: ruby
 rvm:
-  - 2.3.0
+- 2.3.0
+deploy:
+  provider: cloudfoundry
+  api: https://api.run.pivotal.io
+  username: javifc@gmail.com
+  password:
+    secure: bOwnwQI+ArcPXG+HWWibUYLNyIwcTzYP8v2lXN/oGuRpjZfR/nJkvc7K1CA+rqPVkgr97s0KeAlF+YueyxdYvZ6FRlSP5KJaxJ0FzKqBjLODhiLxPOI0GI137y5Il1YvO7QeIdnvR7yrLio+vKmzmCwuTb60SpFIK80k3m1zC9FQkbVGViImMTPBJFCaZZpETX0Nv/3z0XZnrgY7Qi+q4+uj3mdId9kH9lDy1oXoG4c6XSI+7HQBzqSte6GRyOq9JFvgUdW0zkTXpoLjNfhcVBHzDwL+Ko2eld361NXdPeNJ78qFfp3s0h29/6/y4DEojkeq4lrFhRSOhUf96Lu/ei/h9aZa9qJSex5R3twx31wZf3wQnvOgT5iVeLCtF5GFMHTqWV/hd9AEoBmsNmyt6q2sFtSlNaHkxDraTuMmi/7kSgVfEYw9QBl4DJMOCI05UYNJC0UQGCc2Br4EF2P4cOiAqK6ABYduwQrJ5t3vqBTbPPZz6fRVYCmX6ZxirA7Bo+54oqK11JfHCL40aNytzPs5LTJaDkSoz3okzd7uoX3jCcR4ot3pUS/dKWo1tREMhr0/Je2Iz4btUsr0MNoG7nb1AkcVQzcjflSRAs2mpVjyC6b0QNuwMuAqgOyw8I29wWQmwzp7juwb42WlClx+h6FB0jthCGZ6DrDcQEdFb0E=
+  organization: javifc
+  space: development
+  on:
+    repo: javifc/forecast
