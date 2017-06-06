@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Forecast</title>
+    <title>16 days Forecast Application</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,9 +13,16 @@
     <div id="main-container" class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h3>Forecast app</h3>
+          <h2 class="text-center">16 days Forecast Application</h2>
         </div>
+
         <div class="col-xs-12">
+          <% flash.each do |type, message| %>
+            <%  style = { error: "alert-danger", success: "alert-success", notice: "alert-info"}[type.to_sym] || type.to_s %>
+            <div class="alert <%=style%> fade in">
+              <%= message %>
+            </div>
+          <% end %>
           <%= yield %>
         </div>
       </div>
