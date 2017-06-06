@@ -1,7 +1,8 @@
 
 [![Build Status](https://travis-ci.org/javifc/forecast.svg?branch=master)](https://travis-ci.org/javifc/forecast)
 
-This application displays a 16 days forecast of the searched city. The forecast info is obtained by calling to the [Open Weather Map API](http://openweathermap.org/forecast16)
+This application displays a 16 days forecast of a given city. 
+This forecast info is obtained by calling to the [Open Weather Map API](http://openweathermap.org/forecast16)
 
 
 ## How to Configurate 
@@ -48,3 +49,13 @@ Go to the root application's folder and execute:
 ```shell
 rails test
 ```
+
+## Continuous Integration/Development
+
+1 action -> 3 steps
+
+a) User pushes code to Github
+b) Github integration with [TravisCI](https://travis-ci.org) runs all the tests in TravisCI.
+c) If the tests pass, TravisCI integration with [Pivotal Cloud Foundry](https://pivotal.io/platform) deploys the application into Pivotal Web Services.
+
+**Final Staging app url**: https://forecast.cfapps.io/
