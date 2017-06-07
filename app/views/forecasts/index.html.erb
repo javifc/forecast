@@ -45,7 +45,7 @@
 						        	<%=Time.at(forecast.dt).strftime("%A, %d/%m")%>
 						        </h3>
 						        <h4 class="modal-title">
-						        	<%= @city.name %> - <%= @city.country %>
+						        	<%= forecast.city.name %> - <%= forecast.city.country %>
  								</h4> 
 						      </div>
 						      <div class="modal-body">
