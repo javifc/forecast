@@ -1,5 +1,11 @@
 class Forecast < Base
 
+  
+
+    validates :dt, presence: true
+    validates :temp, presence: true
+    validates :weather, presence: true
+
   	attr_accessor :dt
   	attr_accessor :pressure
   	attr_accessor :humidity	
@@ -15,7 +21,7 @@ class Forecast < Base
   	def initialize(hsh = {})
       super
       self.temp =  Temperature.new(hsh[:temp]) unless hsh[:temp].blank?
-      self.weather =  Weather.new(hsh[:weather][0]) unless hsh[:weather][0].blank? 		
+      self.weather =  Weather.new(hsh[:weather][0]) unless hsh[:weather].blank? 
     end
 
 end

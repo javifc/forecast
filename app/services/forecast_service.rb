@@ -17,7 +17,8 @@ class ForecastService
 
 		data[:list].each do |item|
 			item[:units] = units
-			forecasts << Forecast.new(item)	
+			forecast =  Forecast.new(item)
+			forecasts << forecast if forecast.valid?
 		end
 		city = City.new(data[:city])
 		
